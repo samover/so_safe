@@ -1,4 +1,4 @@
-Makerthon Project: Are you safe? [![Build Status](https://travis-ci.org/samover/so_safe.svg)](https://travis-ci.org/samover/so_safe)
+Makerthon Project: Are you safe? [![Build Status](https://travis-ci.org/samover/so_safe.svg?branch=develop)](https://travis-ci.org/samover/so_safe)
 ===============================
 
 The aim is to build an iphone app that allows a user to check on his/her loved
