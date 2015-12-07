@@ -1,5 +1,10 @@
 Makerthon Project: Are you safe?
 ===============================
+TOC
+---
+* [Waffle Metrics](#waffle-metrics)
+* [User Stories](#user-stories)
+
 
 The aim is to build an iphone app that allows a user to check on his/her loved
 ones in case of disaster.
@@ -7,7 +12,7 @@ ones in case of disaster.
 User stories
 ------------
 
-###MVP User Stories:
+####MVP User Stories:
 
 ```
 As a worried parent
@@ -35,7 +40,7 @@ So that I can notify my loved ones quickly
 I want push notifications
 ```
 
-###Added Feature User Stories:
+####Added Feature User Stories:
 
 ```
 As a user
@@ -59,3 +64,9 @@ So that I can send another request
 I want the request I sent to time out
 
 ```
+
+Waffle Metrics 
+--------------
+[![Stories in Ready](https://badge.waffle.io/samover/so_safe.svg?label=ready&title=Ready)](http://waffle.io/samover/so_safe)
+
+[![Throughput Graph](https://graphs.waffle.io/samover/so_safe/throughput.svg)](https://waffle.io/samover/so_safe/metrics)
