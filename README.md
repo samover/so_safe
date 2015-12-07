@@ -65,7 +65,7 @@ I want the request I sent to time out
 
 ```
 
-Waffle Metrics 
+Waffle Metrics
 --------------
 [![Stories in Ready](https://badge.waffle.io/samover/so_safe.svg?label=ready&title=Ready)](http://waffle.io/samover/so_safe)
 
