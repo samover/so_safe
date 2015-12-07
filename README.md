@@ -1,4 +1,4 @@
-Makerthon Project: Are you safe?
+Makerthon Project: Are you safe? [![Build Status](https://travis-ci.org/samover/so_safe.svg)](https://travis-ci.org/samover/so_safe)
 ===============================
 TOC
 ---
