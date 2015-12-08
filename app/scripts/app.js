@@ -10,7 +10,7 @@
  */
 
 
-angular.module('SoSafe', ['ionic', 'ngCordova', 'ngResource'])
+angular.module('SoSafe', ['ionic', 'ngCordova','firebase', 'ngResource'])
 
   .run(function($ionicPlatform) {
 

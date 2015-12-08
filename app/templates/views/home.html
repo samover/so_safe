@@ -4,15 +4,21 @@
         <h1 class="title">So Safe</h1>
     </ion-header-bar>
 
-    <ion-content>
+    <ion-content class="center">
         <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="fetchRandomText()">
+            pulling-text="Pull to refresh...">
         </ion-refresher>
         <div class="loader" ng-if="!myHTML">
             <ion-spinner></ion-spinner>
         </div>
-        <div class="content" ng-bind-html="myHTML">
+        <div ng-controller="ButtonController as btnCtrl">
+          <div class="row text-center">
+            <div class="col">
+              <button id="the_button" class="button" ng-click="btnCtrl.sendRequest()"
+              ng-class="{'custombtn-base':btnCtrl.status.message === 'Are you ok?','custombtn-waiting':btnCtrl.status.message === 'Waiting for response'}"
+              >{{btnCtrl.status.message}}</button>
+            </div>
+          </div>
         </div>
     </ion-content>
 
