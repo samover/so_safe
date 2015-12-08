@@ -10,7 +10,7 @@
  */
 
 
-angular.module('SoSafe', ['ionic', 'ngCordova', 'ngResource'])
+angular.module('SoSafe', [ 'ionic', 'firebase', 'ngCordova','ngResource'])
 
   .run(function($ionicPlatform) {
 
@@ -59,5 +59,3 @@ angular.module('SoSafe', ['ionic', 'ngCordova', 'ngResource'])
     // redirects to default route for undefined routes
     $urlRouterProvider.otherwise('/app/home');
   });
-
-
