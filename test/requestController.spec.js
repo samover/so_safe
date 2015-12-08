@@ -15,8 +15,11 @@ describe('requestController', function() {
   });
 
   it('adds a request to firebase/requests', function() {
+    var requestsRef = new Firebase('https://sosafe.firebaseio.com/requests');
+    requestsRef.set({ name: 'radu', age: 35 });
+    console.log(requestsRef.key());
     ctrl.addRequest();
-    expect(ctrl.requests).toContain(requestData);
+    expect(requests).toContain(requestData);
   });
 
 });

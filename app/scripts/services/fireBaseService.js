@@ -19,5 +19,6 @@ angular.module('SoSafe')
   .factory('Requests', ['$firebaseArray', function($firebaseArray) {
 
     var requestRef = new Firebase('https://sosafe.firebaseio.com/requests');
+    console.log(requestRef);
     return $firebaseArray(requestRef);
   }]);

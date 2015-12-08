@@ -7,7 +7,7 @@
  */
 
 angular.module('SoSafe')
-  .controller('RequestController', function(Requests) {
+  .controller('RequestController', ['Requests', function(Requests) {
     var self = this;
 
     self.requests = Requests;
@@ -16,10 +16,10 @@ angular.module('SoSafe')
       var sender = 'Radu';
       var receivers = ['Sam', 'Andrew'];
 
-      this.requests.$add({
+      self.requests.$add({
         "sender": sender,
         "receivers": receivers
       });
     };
      
-  });
+  }]);
