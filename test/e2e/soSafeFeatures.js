@@ -21,7 +21,7 @@ describe('So Safe Features', function() {
 
   describe("receiving safety confirmation", function(){
 
-    it('changes pending status to confirmed',function(){
+    xit('changes pending status to confirmed',function(){
       element(by.id('the_button')).click();
       element(by.id('the_button')).evaluate('btnCtrl.receiveResponse()');
       expect(element(by.id('the_button')).getText()).toEqual('I am ok!');
