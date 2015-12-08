@@ -1,7 +1,7 @@
 describe('requestController', function() {
   var ctrl, requestData;
 
-  beforeEach(module('SoSafe'));
+  beforeEach(module('SoSafe', 'firebase'));
 
   beforeEach(inject(function($controller){
     ctrl = $controller('RequestController');
@@ -15,11 +15,11 @@ describe('requestController', function() {
   });
 
   it('adds a request to firebase/requests', function() {
-    var requestsRef = new Firebase('https://sosafe.firebaseio.com/requests');
-    requestsRef.set({ name: 'radu', age: 35 });
-    console.log(requestsRef.key());
+    var requestsRef = new Firebase('https://sosafe.firebaseio.com');
     ctrl.addRequest();
-    expect(requests).toContain(requestData);
+    requests = requestsRef;
+    //console.log(requestsRef.key());
+    expect(requests).toEqual(requestData);
   });
 
 });

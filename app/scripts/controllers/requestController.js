@@ -7,19 +7,22 @@
  */
 
 angular.module('SoSafe')
-  .controller('RequestController', ['Requests', function(Requests) {
+  .controller('RequestController', function() {
     var self = this;
+    var requestRef = new Firebase('https://sosafe.firebaseio.com');
 
-    self.requests = Requests;
+    var child = requestRef.child('requests');
+
+    //self.requests = Requests;
 
     self.addRequest = function() {
       var sender = 'Radu';
       var receivers = ['Sam', 'Andrew'];
 
-      self.requests.$add({
+      child.set({
         "sender": sender,
         "receivers": receivers
       });
     };
      
-  }]);
+  });
