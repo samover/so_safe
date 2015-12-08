@@ -1,5 +1,5 @@
-Makerthon Project: Are you safe? [![Build Status](https://travis-ci.org/samover/so_safe.svg?branch=master)](https://travis-ci.org/samover/so_safe)
-===============================
+Makerthon Project: Are you safe? [![Build Status](https://travis-ci.org/samover/so_safe.svg?branch=develop)](https://travis-ci.org/samover/so_safe)
+
 TOC
 ---
 * [Waffle Metrics](#waffle-metrics)
