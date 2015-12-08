@@ -9,4 +9,7 @@ angular.module('SoSafe')
     self.sendRequest = function(){
       self.status.message = 'Waiting for response';
     };
+    self.receiveResponse = function(){
+      self.status.message = 'I am ok!';
+    };
   });
