@@ -17,6 +17,9 @@
               <button id="the_button" class="button" ng-click="btnCtrl.sendRequest()"
               ng-class="{'custombtn-base':btnCtrl.status.message === 'Are you ok?','custombtn-waiting':btnCtrl.status.message === 'Waiting for response'}"
               >{{btnCtrl.status.message}}</button>
+              <button id="the_button" class="button" ng-click="btnCtrl.sendResponse()"
+              ng-class="{'custombtn-base':btnCtrl.status.message === 'Are you ok?','custombtn-waiting':btnCtrl.status.message === 'Waiting for response'}"
+              >{{btnCtrl.status.message}}</button>
             </div>
           </div>
         </div>
