@@ -16,7 +16,5 @@ angular.module('SoSafe')
       child.push({ "sender": sender, "receivers": receivers });
 
       self.status.message = 'Waiting for response';
-    };,.
-
-    self.
+    };
   });
