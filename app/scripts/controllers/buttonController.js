@@ -22,7 +22,14 @@ angular.module('SoSafe')
     };
 
     self.sendRequest = function(){
+      var requestRef = new Firebase('https://sosafe.firebaseio.com');
+      var child = requestRef.child('requests');
+      var sender = 'Radu';
+      var receivers = ['Sam', 'Andrew'];
 
+      child.push({ "sender": sender, "receivers": receivers });
+
+      self.status.message = 'Waiting for response';
     };
 
     self.sendResponse = function(){
