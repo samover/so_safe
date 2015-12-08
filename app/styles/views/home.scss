@@ -22,6 +22,22 @@ border-radius: 100px;
 -moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
 box-shadow: 2px 2px 15px rgba(0,0,0, .75);
 }
+.custombtn-waiting{
+width:200px; /*same as the height*/
+height:200px; /*same as the width*/
+background-color:#ff9933;
+border:1px solid #ff0000; /*same colour as the background*/
+color:#fff;
+font-size:1.6em;
+/*set the border-radius at half the size of the width and height*/
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+border-radius: 100px;
+/*give the button a small drop shadow*/
+-webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
+-moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
+box-shadow: 2px 2px 15px rgba(0,0,0, .75);
+}
 /***NOW STYLE THE BUTTON'S HOVER STATE***/
 .custombtn-base:hover{
 background:#c20b0b;
