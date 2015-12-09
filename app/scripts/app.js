@@ -34,13 +34,23 @@ angular.module('SoSafe', ['ionic', 'ngCordova','firebase', 'ngResource'])
         templateUrl: 'templates/main.html',
         controller: 'MainController'
       })
-      .state('app.home', {
+      .state('app.login', {
+        url: '/login',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/login.html',
+            controller: 'LoginController'
+          }
+        }
+      })
+      .state('app.button', {
         url: '/home',
         cache: true,
         views: {
           'viewContent': {
-            templateUrl: 'templates/views/home.html',
-            controller: 'HomeController'
+            templateUrl: 'templates/views/button.html',
+            controller: 'ButtonController'
           }
         }
       })
@@ -57,7 +67,5 @@ angular.module('SoSafe', ['ionic', 'ngCordova','firebase', 'ngResource'])
 
 
     // redirects to default route for undefined routes
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/app/login');
   });
-
-

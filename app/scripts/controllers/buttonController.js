@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('SoSafe')
-  .controller('ButtonController', ['$scope', '$state', function($scope, $state) {
+  .controller('ButtonController', ['$rootScope', '$scope', '$state', 'User', function($rootScope, $scope, $state, User) {
     var requestRef = new Firebase('https://sosafe.firebaseio.com/requests'),
       receivers, sender, key;
 
     $scope.friends = [];
-    $scope.user = 'Amy';
+    $scope.user = $rootScope.user.name;
     $scope.status = { message: 'Are you ok?' };
 
     requestRef.orderByKey().on('child_added', function(snapshot) {
@@ -62,10 +62,10 @@ angular.module('SoSafe')
       }
     };
 
-    $scope.sendRequest = function(){
+    $scope.sendRequest = function() {
       var requestRef = new Firebase('https://sosafe.firebaseio.com');
       var child = requestRef.child('requests');
-      var sender = 'Amy';
+      var sender = $scope.user;
       var receivers = [
         {
           'name': 'Radu',
@@ -100,6 +100,7 @@ angular.module('SoSafe')
 
         postRef.update(request);
       });
+
     };
 
   }]);
