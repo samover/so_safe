@@ -13,10 +13,14 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.js',
+      'https://cdn.firebase.com/js/client/2.2.4/firebase.js',
+      'https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'www/js/**/*.js',
+      'bower_components/ionic/release/js/ionic.bundle.js',
+      'bower_components/ngCordova/dist/ng-cordova.js',
+      'app/scripts/**/*.js',
       'test/**/*.spec.js'
     ],
 
