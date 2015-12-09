@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SoSafe')
-  .controller('ButtonController', ['$scope', '$state', function($scope, $state) {
+  .controller('ButtonController', ['$scope', '$state', 'ApiService', function($scope, $state, ApiService) {
     var requestRef = new Firebase('https://sosafe.firebaseio.com/requests'),
       receivers, sender, key;
 
@@ -14,7 +14,7 @@ angular.module('SoSafe')
 
       for(var i =0; i < receivers.length; i++){
         if(receivers[i].name === $scope.user){
-          $scope.status.message = 'I am ok!'
+          $scope.status.message = 'I am ok!';
         }
       }
 

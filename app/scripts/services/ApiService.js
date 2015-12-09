@@ -15,20 +15,51 @@
  *
  */
 angular.module('SoSafe')
-  .factory('ApiService', function($window, $http, API_ENDPOINT) {
+  .factory('ApiService', ['$scope', '$rootScope', function($scope, $rootScope) {
+    $scope.sendRequest = function(){
+      var requestRef = new Firebase('https://sosafe.firebaseio.com');
+      var child = requestRef.child('requests');
+      var sender = 'Sam';
+      var receivers = [
+        {
+          'name': 'Radu',
+          'status': false
+        }, {
+          'name': 'Amy',
+          'status': false
+        }
+      ];
 
-    var _api = API_ENDPOINT;
-    var endpoint = _api.port ? (_api.host + ':' + _api.port + _api.path) : (_api.host + _api.path);
+      child.push({
+        'sender': sender,
+        'receivers': receivers
+      });
 
-    // activate for basic auth
-    if (_api.needsAuth) {
-      $http.defaults.headers.common.Authorization = 'Basic ' + $window.btoa(_api.username + ':' + _api.password);
-    }
-
-    // public api
-    return {
-      getEndpoint: function() { return endpoint; }
+      $scope.friends = receivers;
     };
 
-  });
+    $scope.sendResponse = function() {
+      var receiversRef = new Firebase('https://sosafe.firebaseio.com/requests');
 
+      receiversRef.orderByKey().on('child_added', function(snapshot) {
+        var request = snapshot.val();
+        var key = snapshot.key();
+        var postRef = new Firebase(receiversRef.toString() + '/' + key);
+
+        for(var i = 0; i < request.receivers.length; i++) {
+          if(request.receivers[i].name === $scope.user) {
+            request.receivers[i].status = true;
+          }
+        }
+
+        postRef.update(request);
+      });
+    };
+    $scope.resetRequest = function() {
+      var url = requestRef.toString() + '/' + key;
+      var deleteRef = new Firebase(url);
+      deleteRef.remove();
+      $scope.friends = [];
+    };
+
+  }]);
