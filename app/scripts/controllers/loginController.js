@@ -7,12 +7,11 @@
  * # HomeController
  */
 angular.module('SoSafe')
-  .controller('LoginController', ['User', function($scope, $state, User) {
-    $scope.data = {};
+  .controller('LoginController', ['$scope', '$rootScope', '$state', 'User', function($scope, $rootScope, $state, User) {
+    var self = this;
 
-    $scope.login = function() {
-      // var $scope.user = new User($scope.name);
-      console.log(new User($scope.name));
+    self.login = function() {
+      $rootScope.user = new User($scope.name);
       $state.go('app.button');
     };
 

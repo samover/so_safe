@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('SoSafe')
-  .controller('ButtonController', function(){
+  .controller('ButtonController', ['$rootScope', 'User', function($rootScope, User){
     var self = this;
+    this.currentUser = $rootScope.user.name
     self.status = {
       message: 'Are you ok?'
     };
@@ -36,4 +37,4 @@ angular.module('SoSafe')
 
     };
 
-  });
+  }]);
