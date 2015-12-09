@@ -39,7 +39,7 @@ angular.module('SoSafe')
           console.log('hello');
           $scope.status.message = 'Are you ok?';
           deleteRef.remove();    
-          //$scope.friends = [];
+          $scope.friends = [];
         }
       }
 
