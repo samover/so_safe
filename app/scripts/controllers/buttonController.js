@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('SoSafe')
-  .controller('ButtonController', ['$scope', function($scope) {
+  .controller('ButtonController', ['$scope', '$state', function($scope, $state) {
     var requestRef = new Firebase('https://sosafe.firebaseio.com/requests');
     // var requestRef = new Firebase('https://sosafe.firebaseio.com/');
 
@@ -18,6 +18,7 @@ angular.module('SoSafe')
           $scope.status.message = 'I am ok!'
         }
       }
+      $state.go($state.current, {}, { reload: true });
     });
 
     requestRef.orderByKey().on('child_changed', function(snapshot) {
@@ -33,6 +34,7 @@ angular.module('SoSafe')
           $scope.status.message = 'Are you ok?';
         }
       }
+      $state.go($state.current, {}, { reload: true });
       console.log($scope.friends);
       console.log($scope.status.message);
     });
