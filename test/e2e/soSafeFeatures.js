@@ -13,6 +13,7 @@ describe('So Safe Features', function() {
     element(by.css('button')).click();
     expect(element(by.id("the_button")).getText()).toEqual("Are you ok?");
   });
+  
   describe("clicking the button", function(){
     it("starts with a default message", function(){
       expect(element(by.id("the_button")).getText()).toEqual("Are you ok?")
