@@ -7,9 +7,16 @@
     <ion-content class="center" ng-controller="LoginController as loginCtrl">
       <div class="list list-inset">
         <label class="item item-input">
-          <input type="text" placeholder="username"
+          <input type="text" placeholder="user name"
           name="name" ng-model="name">
         </label>
+          <div>
+            <label class="item item-input">
+            <input type="text" placeholder="add friends" name="friend" ng-model="friendName">
+            <button ng-if="$friend !== friends.length-1" ng-click="addFriend()">+</button>
+            <!-- <button ng-if ="$friend != friends.length-1" ng-click="removeFriend($friend)">-</button> -->
+          </label>
+          </div>
         <button class="button button-block button-calm" ng-click="loginCtrl.login()">Login</button>
       </form>
     </ion-content>
