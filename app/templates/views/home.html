@@ -11,14 +11,14 @@
         <div class="loader" ng-if="!myHTML">
             <ion-spinner></ion-spinner>
         </div>
-        <div ng-controller="ButtonController as btnCtrl">
+        <div ng-controller="ButtonController">
           <div class="row text-center">
             <div class="col">
               <form>
-              <input id="the_button" class="button" ng-model="btnCtrl.status.message" ng-click="btnCtrl.changeStatus()"
-              ng-class="{'custombtn-base':btnCtrl.status.message === 'Are you ok?',
-              'custombtn-waiting':btnCtrl.status.message === 'Waiting for response',
-              'custombtn-response':btnCtrl.status.message === 'I am ok!'}" value="'{{btnCtrl.status.message}}'">
+              <input id="the_button" class="button" ng-model="status.message" ng-click="changeStatus()"
+              ng-class="{'custombtn-base':status.message === 'Are you ok?',
+              'custombtn-waiting':status.message === 'Waiting for response',
+              'custombtn-response':status.message === 'I am ok!'}" value="'{{status.message}}'">
 
               </form>
             </div>
@@ -26,7 +26,7 @@
 
           <div class='row text-center'>
             <div class='col' >
-              <p>{{ btnCtrl.friends }}</p>
+              <p>{{ friends }}</p>
             </div>
           </div>
         </div>
