@@ -5,18 +5,20 @@
  * @description
  * Our button directive
  */
-angular.module('SoSafe')
-  .directive('panicButton', function() {
-    return {
-      restrict: 'E',
-      templateUrl: 'templates/views/panic-button.html'
-    };
 
-  //.directive('friendsList', function() {
-    //return {
-      //restrict: 'E',
-      //templateUrl: 'templates/views/friends-list.html'
-    //}
-  //});
+var app = angular.module('SoSafe');
+
+app.directive('panicButton', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/views/panic-button.html'
+  };
+});
+
+app.directive('friendsList', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/views/friends-list.html'
+  };
 });
 

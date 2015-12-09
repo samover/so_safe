@@ -6,7 +6,7 @@ angular.module('SoSafe')
       receivers, sender, key;
 
     $scope.friends = [];
-    $scope.user = 'Amy';
+    $scope.user = 'Sam';
     $scope.status = { message: 'Are you ok?' };
 
     requestRef.orderByKey().on('child_added', function(snapshot) {
@@ -65,13 +65,13 @@ angular.module('SoSafe')
     $scope.sendRequest = function(){
       var requestRef = new Firebase('https://sosafe.firebaseio.com');
       var child = requestRef.child('requests');
-      var sender = 'Amy';
+      var sender = 'Sam';
       var receivers = [
         {
           'name': 'Radu',
           'status': false
         }, {
-          'name': 'Sam',
+          'name': 'Amy',
           'status': false
         }
       ];

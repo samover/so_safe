@@ -1,0 +1,14 @@
+<div class='row text-center' ng-repeat='friend in friends'>
+  <div class="col">
+    <div class='list friend_status'>
+      <a href="#" class="item item-icon-left">
+        <i class="icon ion-person-stalker">
+        </i>
+        {{friend.name}}
+        <span class="pull-right">
+        <button class="button" ng-class="{'statusnotice_waiting':friend.status === false,
+          'statusnotice_ok':friend.status === true}"></button> </span>
+      </a>
+    </div>
+  </div>
+</div>
