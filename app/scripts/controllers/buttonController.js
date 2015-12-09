@@ -6,7 +6,7 @@ angular.module('SoSafe')
       receivers, sender, key;
 
     $scope.friends = [];
-    $scope.user = 'Sam';
+    $scope.user = 'Amy';
     $scope.status = { message: 'Are you ok?' };
 
     requestRef.orderByKey().on('child_added', function(snapshot) {
@@ -45,7 +45,7 @@ angular.module('SoSafe')
     $scope.resetRequest = function() {
       var url = requestRef.toString() + '/' + key;
       var deleteRef = new Firebase(url);
-      deleteRef.remove();    
+      deleteRef.remove();
       $scope.friends = [];
     };
 
@@ -65,13 +65,13 @@ angular.module('SoSafe')
     $scope.sendRequest = function(){
       var requestRef = new Firebase('https://sosafe.firebaseio.com');
       var child = requestRef.child('requests');
-      var sender = 'Sam';
+      var sender = 'Amy';
       var receivers = [
         {
           'name': 'Radu',
           'status': false
         }, {
-          'name': 'Amy',
+          'name': 'Sam',
           'status': false
         }
       ];
