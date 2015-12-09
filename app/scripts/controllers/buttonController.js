@@ -2,14 +2,32 @@
 
 angular.module('SoSafe')
   .controller('ButtonController', function() {
-
-    var requestRef = new Firebase('https://sosafe.firebaseio.com/');
+    var requestRef = new Firebase('https://sosafe.firebaseio.com/requests');
+    // var requestRef = new Firebase('https://sosafe.firebaseio.com/');
     var self = this;
     self.user = 'Sam';
 
-    requestRef.child('requests').on('child_added', function(snapshot) {
-      var request = snapshot.val();
-      console.log(request);
+    requestRef.orderByKey().on('child_added', function(snapshot) {
+      var receivers = snapshot.val().receivers,
+      sender = snapshot.val().sender;
+      for(var i =0; i < receivers.length; i++){
+        if(receivers[i].name === self.user){
+          self.status.message = 'I am ok!'
+        }
+
+        console.log(receivers[i]);
+      }
+      // snapshot.forEach(function(request){
+      //
+      //   console.log(request.val());
+      //   console.log(typeof request);
+        // request.val().receivers.forEach(function(receiver){
+        //   console.log(receiver);
+        // });
+      // });
+      // var request = snapshot.val();
+      // console.log(request);
+
       //if (request.receivers.includes(self.user)) {
         //self.status.message = request.sender + ' wants to know if you\'re okay';
       //}
@@ -38,12 +56,12 @@ angular.module('SoSafe')
       var child = requestRef.child('requests');
       var sender = 'Radu';
       var receivers = [
-        { 
-          'name': 'Sam', 
+        {
+          'name': 'Sam',
           'status': false
         }, {
           'name': 'Andrew',
-          'status': false 
+          'status': false
         }
       ];
 
@@ -55,7 +73,7 @@ angular.module('SoSafe')
 
     self.sendResponse = function() {
       var receiversRef = new Firebase('https://sosafe.firebaseio.com/requests');
-      
+
       receiversRef.orderByKey().on('child_added', function(snapshot) {
         var request = snapshot.val();
         var key = snapshot.key();
@@ -63,10 +81,10 @@ angular.module('SoSafe')
 
         for(var i = 0; i < request.receivers.length; i++) {
           if(request.receivers[i].name === self.user) {
-            request.receivers[i].status = true; 
+            request.receivers[i].status = true;
           }
         }
-        
+
         postRef.update(request);
       });
     };
