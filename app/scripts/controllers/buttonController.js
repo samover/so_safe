@@ -1,49 +1,69 @@
 'use strict';
 
 angular.module('SoSafe')
-  .controller('ButtonController', function() {
+  .controller('ButtonController', ['$scope', '$state', function($scope, $state) {
+    var requestRef = new Firebase('https://sosafe.firebaseio.com/requests');
+    // var requestRef = new Firebase('https://sosafe.firebaseio.com/');
 
-    var requestRef = new Firebase('https://sosafe.firebaseio.com/');
-    var self = this;
-    self.user = 'Sam';
+    $scope.friends = [];
+    $scope.user = 'Radu';
 
-    requestRef.child('requests').on('child_added', function(snapshot) {
-      var request = snapshot.val();
-      console.log(request);
-      //if (request.receivers.includes(self.user)) {
-        //self.status.message = request.sender + ' wants to know if you\'re okay';
-      //}
+    console.log('These are my friends: ' + $scope.friends);
+
+    requestRef.orderByKey().on('child_added', function(snapshot) {
+      var receivers = snapshot.val().receivers,
+      sender = snapshot.val().sender;
+      for(var i =0; i < receivers.length; i++){
+        if(receivers[i].name === $scope.user){
+          $scope.status.message = 'I am ok!'
+        }
+      }
+      $state.go($state.current, {}, { reload: true });
     });
 
-    self.status = {
+    requestRef.orderByKey().on('child_changed', function(snapshot) {
+      var receivers = snapshot.val().receivers,
+      sender = snapshot.val().sender;
+      if( sender === $scope.user ) {
+        $scope.friends = receivers;
+        var friendArray = receivers.filter(function(receiver){
+          return receiver.status === false;
+        });
+        if(friendArray.length === 0) {
+          console.log("hello");
+          $scope.status.message = 'Are you ok?';
+        }
+      }
+      $state.go($state.current, {}, { reload: true });
+      console.log($scope.friends);
+      console.log($scope.status.message);
+    });
+
+    $scope.status = {
       message: 'Are you ok?'
     };
 
-    self.changeStatus = function(){
-      if (self.status.message === 'Are you ok?'){
-        self.status.message = 'Waiting for response';
-        self.sendRequest();
-      } else if (self.status.message === 'Waiting for response'){
-        self.status.message = 'Your friend is ok';
-      } else if (self.status.message === 'I am ok!') {
-        self.sendResponse();
-        self.status.message = 'Are you ok?';
-      } else if (self.status.message === 'Your friend is ok'){
-        self.status.message = 'Are you ok?';
+    $scope.changeStatus = function(){
+      if ($scope.status.message === 'Are you ok?'){
+        $scope.status.message = 'Waiting for response';
+        $scope.sendRequest();
+      } else if ($scope.status.message === 'I am ok!') {
+        $scope.sendResponse();
+        $scope.status.message = 'Are you ok?';
       }
     };
 
-    self.sendRequest = function(){
+    $scope.sendRequest = function(){
       var requestRef = new Firebase('https://sosafe.firebaseio.com');
       var child = requestRef.child('requests');
       var sender = 'Radu';
       var receivers = [
-        { 
-          'name': 'Sam', 
+        {
+          'name': 'Sam',
           'status': false
         }, {
           'name': 'Andrew',
-          'status': false 
+          'status': false
         }
       ];
 
@@ -51,24 +71,26 @@ angular.module('SoSafe')
         'sender': sender,
         'receivers': receivers
       });
+
+      $scope.friends = receivers;
     };
 
-    self.sendResponse = function() {
+    $scope.sendResponse = function() {
       var receiversRef = new Firebase('https://sosafe.firebaseio.com/requests');
-      
+
       receiversRef.orderByKey().on('child_added', function(snapshot) {
         var request = snapshot.val();
         var key = snapshot.key();
         var postRef = new Firebase(receiversRef.toString() + '/' + key);
 
         for(var i = 0; i < request.receivers.length; i++) {
-          if(request.receivers[i].name === self.user) {
-            request.receivers[i].status = true; 
+          if(request.receivers[i].name === $scope.user) {
+            request.receivers[i].status = true;
           }
         }
-        
+
         postRef.update(request);
       });
     };
 
-  });
+  }]);
