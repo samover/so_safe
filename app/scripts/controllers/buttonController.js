@@ -3,7 +3,7 @@
 angular.module('SoSafe')
   .controller('ButtonController', ['$rootScope', 'User', function($rootScope, User){
     var self = this;
-    this.currentUser = $rootScope.user.name
+    this.currentUser = $rootScope.user.name;
     self.status = {
       message: 'Are you ok?'
     };
