@@ -5,21 +5,36 @@ angular.module('SoSafe')
 
     var requestRef = new Firebase('https://sosafe.firebaseio.com/');
     var self = this;
-    self.user = 'Sam'
+    self.user = 'Sam';
 
-    requestRef.child('requests').on("child_added", function(snapshot) {
+    requestRef.child('requests').on('child_added', function(snapshot) {
       var request = snapshot.val();
       console.log(request);
-      if (request.receivers.includes(self.user)) {
-        self.status.message = request.sender + " wants to know if you're okay"
-      }
+      //if (request.receivers.includes(self.user)) {
+        //self.status.message = request.sender + ' wants to know if you\'re okay';
+      //}
     });
 
     self.status = {
       message: 'Are you ok?'
     };
 
-    self.sendRequest = function() {
+    self.changeStatus = function(){
+      if (self.status.message === 'Are you ok?'){
+        self.status.message = 'Waiting for response';
+        self.sendRequest();
+      } else if (self.status.message === 'Waiting for response'){
+        self.status.message = 'Your friend is ok';
+      } else if (self.status.message === 'I am ok!') {
+        self.sendResponse();
+        self.status.message = 'Are you ok?';
+      } else if (self.status.message === 'Your friend is ok'){
+        self.status.message = 'Are you ok?';
+      }
+    };
+
+    self.sendRequest = function(){
+      var requestRef = new Firebase('https://sosafe.firebaseio.com');
       var child = requestRef.child('requests');
       var sender = 'Radu';
       var receivers = [
@@ -33,11 +48,9 @@ angular.module('SoSafe')
       ];
 
       child.push({
-        "sender": sender,
-        "receivers": receivers
+        'sender': sender,
+        'receivers': receivers
       });
-
-      self.status.message = 'Waiting for response';
     };
 
     self.sendResponse = function() {
@@ -56,7 +69,6 @@ angular.module('SoSafe')
         
         postRef.update(request);
       });
-      self.status.message = 'I am OK';
     };
 
   });
