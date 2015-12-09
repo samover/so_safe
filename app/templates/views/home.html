@@ -14,18 +14,19 @@
         <div ng-controller="ButtonController as btnCtrl">
           <div class="row text-center">
             <div class="col">
-              <button id="the_button" class="button" ng-click="btnCtrl.changeStatus()"
+              <form>
+              <input id="the_button" class="button" ng-model="btnCtrl.status.message" ng-click="btnCtrl.changeStatus()"
               ng-class="{'custombtn-base':btnCtrl.status.message === 'Are you ok?',
               'custombtn-waiting':btnCtrl.status.message === 'Waiting for response',
-              'custombtn-response':btnCtrl.status.message === 'I am ok!'}"
-              >{{btnCtrl.status.message}}</button>
-              {{ btnCtrl.friends }}
+              'custombtn-response':btnCtrl.status.message === 'I am ok!'}" value="'{{btnCtrl.status.message}}'">
+
+              </form>
             </div>
           </div>
 
-          <div class='row text-center'> 
-            <div class='col' ng-repeat='friend in btnCtrl.friends'>
-              <p>{{ friend.name }} {{ friend.status }}</p>
+          <div class='row text-center'>
+            <div class='col' >
+              <p>{{ btnCtrl.friends }}</p>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ angular.module('SoSafe')
     // var requestRef = new Firebase('https://sosafe.firebaseio.com/');
     var self = this;
 
-    self.friends = []; 
+    self.friends = [];
     self.user = 'Radu';
 
     console.log('These are my friends: ' + self.friends);
@@ -26,14 +26,17 @@ angular.module('SoSafe')
       sender = snapshot.val().sender;
       if( sender === self.user ) {
         self.friends = receivers;
-        //for(var i = 0; i < receivers.length; i++){
-          //if(receivers[i].status === true){
-            //console.log(receivers[i].name + ' is OK');
-            ////self.status.message = 'I am ok!'
-          //}
+        var friendArray = receivers.filter(function(receiver){
+          return receiver.status === false;
+        });
+        if(friendArray.length === 0) {
+          console.log("hello");
+          self.status.message = 'Are you ok?';
         }
-        console.log(self.friends);
-      });
+      }
+      console.log(self.friends);
+      console.log(self.status.message);
+    });
 
     self.status = {
       message: 'Are you ok?'
@@ -43,12 +46,8 @@ angular.module('SoSafe')
       if (self.status.message === 'Are you ok?'){
         self.status.message = 'Waiting for response';
         self.sendRequest();
-      } else if (self.status.message === 'Waiting for response'){
-        self.status.message = 'Your friend is ok';
       } else if (self.status.message === 'I am ok!') {
         self.sendResponse();
-        self.status.message = 'Are you ok?';
-      } else if (self.status.message === 'Your friend is ok'){
         self.status.message = 'Are you ok?';
       }
     };
@@ -71,7 +70,7 @@ angular.module('SoSafe')
         'sender': sender,
         'receivers': receivers
       });
-      
+
       self.friends = receivers;
     };
 
