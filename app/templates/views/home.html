@@ -19,6 +19,13 @@
               'custombtn-waiting':btnCtrl.status.message === 'Waiting for response',
               'custombtn-response':btnCtrl.status.message === 'I am ok!'}"
               >{{btnCtrl.status.message}}</button>
+              {{ btnCtrl.friends }}
+            </div>
+          </div>
+
+          <div class='row text-center'> 
+            <div class='col' ng-repeat='friend in btnCtrl.friends'>
+              <p>{{ friend.name }} {{ friend.status }}</p>
             </div>
           </div>
         </div>

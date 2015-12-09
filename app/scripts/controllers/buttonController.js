@@ -5,7 +5,11 @@ angular.module('SoSafe')
     var requestRef = new Firebase('https://sosafe.firebaseio.com/requests');
     // var requestRef = new Firebase('https://sosafe.firebaseio.com/');
     var self = this;
-    self.user = 'Sam';
+
+    self.friends = []; 
+    self.user = 'Radu';
+
+    console.log('These are my friends: ' + self.friends);
 
     requestRef.orderByKey().on('child_added', function(snapshot) {
       var receivers = snapshot.val().receivers,
@@ -14,24 +18,22 @@ angular.module('SoSafe')
         if(receivers[i].name === self.user){
           self.status.message = 'I am ok!'
         }
-
-        console.log(receivers[i]);
       }
-      // snapshot.forEach(function(request){
-      //
-      //   console.log(request.val());
-      //   console.log(typeof request);
-        // request.val().receivers.forEach(function(receiver){
-        //   console.log(receiver);
-        // });
-      // });
-      // var request = snapshot.val();
-      // console.log(request);
-
-      //if (request.receivers.includes(self.user)) {
-        //self.status.message = request.sender + ' wants to know if you\'re okay';
-      //}
     });
+
+    requestRef.orderByKey().on('child_changed', function(snapshot) {
+      var receivers = snapshot.val().receivers,
+      sender = snapshot.val().sender;
+      if( sender === self.user ) {
+        self.friends = receivers;
+        //for(var i = 0; i < receivers.length; i++){
+          //if(receivers[i].status === true){
+            //console.log(receivers[i].name + ' is OK');
+            ////self.status.message = 'I am ok!'
+          //}
+        }
+        console.log(self.friends);
+      });
 
     self.status = {
       message: 'Are you ok?'
@@ -69,6 +71,8 @@ angular.module('SoSafe')
         'sender': sender,
         'receivers': receivers
       });
+      
+      self.friends = receivers;
     };
 
     self.sendResponse = function() {
