@@ -5,12 +5,6 @@
     </ion-header-bar>
 
     <ion-content class="center">
-        <ion-refresher
-            pulling-text="Pull to refresh...">
-        </ion-refresher>
-        <div class="loader" ng-if="!myHTML">
-            <ion-spinner></ion-spinner>
-        </div>
         <div ng-controller="ButtonController as btnCtrl">
           <div class="row text-center">
             <div class="col">
@@ -23,5 +17,4 @@
           </div>
         </div>
     </ion-content>
-
 </ion-view>
