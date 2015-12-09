@@ -3,7 +3,7 @@
 angular.module('SoSafe')
   .controller('ButtonController', ['$scope', '$state', function($scope, $state) {
     var requestRef = new Firebase('https://sosafe.firebaseio.com/requests'),
-      receivers, sender;
+      receivers, sender, key;
 
     $scope.friends = [];
     $scope.user = 'Sam';
@@ -23,10 +23,8 @@ angular.module('SoSafe')
 
     requestRef.orderByKey().on('child_changed', function(snapshot) {
       receivers = snapshot.val().receivers;
-      var url = requestRef.toString() + '/' + snapshot.key();
-      var deleteRef = new Firebase(url);
-
       sender = snapshot.val().sender;
+      key = snapshot.key();
 
       if( sender === $scope.user ) {
         $scope.friends = receivers;
@@ -37,15 +35,19 @@ angular.module('SoSafe')
 
         if(friendArray.length === 0) {
           console.log('hello');
-          $scope.status.message = 'Are you ok?';
-          deleteRef.remove();    
-          $scope.friends = [];
+          $scope.status.message = 'Everyone is ok!';
         }
       }
 
       $state.go($state.current, {}, { reload: true });
     });
 
+    $scope.resetRequest = function() {
+      var url = requestRef.toString() + '/' + key;
+      var deleteRef = new Firebase(url);
+      deleteRef.remove();    
+      $scope.friends = [];
+    };
 
     $scope.changeStatus = function(){
       if ($scope.status.message === 'Are you ok?'){
@@ -54,6 +56,9 @@ angular.module('SoSafe')
       } else if ($scope.status.message === 'I am ok!') {
         $scope.sendResponse();
         $scope.status.message = 'Are you ok?';
+      } else if ($scope.status.message === 'Everyone is ok!') {
+        $scope.status.message = 'Are you ok?';
+        $scope.resetRequest();
       }
     };
 
@@ -65,7 +70,10 @@ angular.module('SoSafe')
         {
           'name': 'Radu',
           'status': false
-        }      
+        }, {
+          'name': 'Amy',
+          'status': false
+        }
       ];
 
       child.push({

@@ -17,7 +17,8 @@
               <button id="the_button" class="button" ng-model="status.message" ng-click="changeStatus()"
               ng-class="{'custombtn-base':status.message === 'Are you ok?',
               'custombtn-waiting':status.message === 'Waiting for response',
-              'custombtn-response':status.message === 'I am ok!'}">{{status.message}}</button>
+              'custombtn-response':status.message === 'I am ok!',
+              'custombtn-allok':status.message === 'Everyone is ok!'}">{{status.message}}</button>
             </div>
           </div>
 
