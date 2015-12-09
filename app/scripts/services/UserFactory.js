@@ -2,9 +2,9 @@
 
 angular.module('SoSafe')
  .factory('User', function() {
-   function User(userData) {
-     if(userData) {
-       this.setData(userData);
+   function User(name) {
+     if(name) {
+       this.name = name;
      }
  }
  User.prototype = {
@@ -15,4 +15,5 @@ angular.module('SoSafe')
 
    }
  };
+ return User;
 });
