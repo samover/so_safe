@@ -5,23 +5,14 @@
     </ion-header-bar>
 
     <ion-content class="center">
-        <!--<ion-refresher-->
-            <!--pulling-text="Pull to refresh...">-->
-        <!--</ion-refresher>-->
-        <!--<div class="loader" ng-if="!myHTML">-->
-            <!--<ion-spinner></ion-spinner>-->
-        <!--</div>-->
+
         <div ng-controller="ButtonController">
-          <div class="row text-center">
-            <div class="col">
-              <button id="the_button" class="button" ng-model="status.message" ng-click="changeStatus()"
-              ng-class="{'custombtn-base':status.message === 'Are you ok?',
-              'custombtn-waiting':status.message === 'Waiting for response',
-              'custombtn-response':status.message === 'I am ok!',
-              'custombtn-allok':status.message === 'Everyone is ok!'}">{{status.message}}</button>
-            </div>
-          </div>
+
+          <panic-button></panic-button>
+
+
           <br></br>
+
           <div class='row text-center' ng-repeat='friend in friends'>
             <div class="col">
               <div class='list friend_status'>
@@ -36,6 +27,7 @@
               </div>
             </div>
           </div>
+
         </div>
     </ion-content>
 
