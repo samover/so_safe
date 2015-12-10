@@ -11,22 +11,10 @@ angular.module('SoSafe')
     var self = this;
 
     self.login = function(user) {
-      console.log('hello');
-      var friends = [
-        {
-          'name': user.friend1,
-          'status': false
-        },
-        {
-          'name': user.friend2,
-          'status': false
-        }
-      ];
-      //$rootScope.user = new User(user.name);
+      var friends = self.friends;
+
       window.localStorage['username'] = user.name;
       window.localStorage['friends'] = JSON.stringify(friends);
-      //$rootScope.friend = user.friend;
-      //console.log(user);
       $state.go('app.button');
     };
 
@@ -35,8 +23,7 @@ angular.module('SoSafe')
         'status': false
       }];
 
-    self.addInput = function() {
-      console.log('hello!');
+    self.addInput = function(friend) {
       self.friends.push({
         'name': friend.name,
         'status': false
