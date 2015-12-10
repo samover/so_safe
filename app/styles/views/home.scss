@@ -19,70 +19,62 @@
 }
 
 .custombtn-base{
-width:200px; /*same as the height*/
-height:200px; /*same as the width*/
-background-color:#ff0000;
+width:250px; /*same as the height*/
+height:250px; /*same as the width*/
+font-size: 30px !important;
+font-weight: bolder;
+text-transform: uppercase !important;
+background-color:#e00000;
 border:1px solid #ff0000; /*same colour as the background*/
 color:#fff;
-font-size:1.6em;
+overflow: hidden;
 /*set the border-radius at half the size of the width and height*/
--webkit-border-radius: 100px;
--moz-border-radius: 100px;
-border-radius: 100px;
+border-radius: 50%;
 /*give the button a small drop shadow*/
--webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
-box-shadow: 2px 2px 15px rgba(0,0,0, .75);
 }
 .custombtn-waiting{
-width:200px; /*same as the height*/
-height:200px; /*same as the width*/
-background-color:#ff9933;
-border:1px solid #ff9933; /*same colour as the background*/
-color:#fff;
-font-size:1.6em;
-/*set the border-radius at half the size of the width and height*/
--webkit-border-radius: 100px;
--moz-border-radius: 100px;
-border-radius: 100px;
-/*give the button a small drop shadow*/
--webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
-box-shadow: 2px 2px 15px rgba(0,0,0, .75);
-}
+  width:50; /*same as the height*/
+  height:50px; /*same as the width*/
+  font-size: 20px !important;
+  font-weight: bolder;
+  text-transform: uppercase !important;
+  background-color:#ff9933;
+  border:1px solid #ff9933; /*same colour as the background*/
+  color:#fff;
+  overflow: hidden;
+  /*set the border-radius at half the size of the width and height*/
+  border-radius: 8px;
+  /*give the button a small drop shadow*/
+  }
 .custombtn-response{
-width:200px; /*same as the height*/
-height:200px; /*same as the width*/
-background-color:#00DDFF;
-border:1px solid #00DDFF; /*same colour as the background*/
-color:#fff;
-font-size:1.6em;
-/*set the border-radius at half the size of the width and height*/
--webkit-border-radius: 100px;
--moz-border-radius: 100px;
-border-radius: 100px;
-/*give the button a small drop shadow*/
--webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
-box-shadow: 2px 2px 15px rgba(0,0,0, .75);
-}
+  width:250px; /*same as the height*/
+  height:250px; /*same as the width*/
+  font-size: 30px !important;
+  font-weight: bolder;
+  text-transform: uppercase !important;
+  background-color:#00ddff;
+  border:1px solid #00ddff; /*same colour as the background*/
+  color:#fff;
+  overflow: hidden;
+  /*set the border-radius at half the size of the width and height*/
+  border-radius: 50%;
+  /*give the button a small drop shadow*/
+  }
 
 .custombtn-allok{
-width:200px; /*same as the height*/
-height:200px; /*same as the width*/
-background-color:#33cc33;
-border:1px solid #33cc33; /*same colour as the background*/
-color:#fff;
-font-size:1.6em;
-/*set the border-radius at half the size of the width and height*/
--webkit-border-radius: 100px;
--moz-border-radius: 100px;
-border-radius: 100px;
-/*give the button a small drop shadow*/
--webkit-box-shadow: 0 0 10px rgba(0,0,0, .75);
--moz-box-shadow: 0 0 10px rgba(0,0,0, .75);
-box-shadow: 2px 2px 15px rgba(0,0,0, .75);
-}
+  width:250px; /*same as the height*/
+  height:250px; /*same as the width*/
+  font-size: 30px !important;
+  font-weight: bolder;
+  text-transform: uppercase !important;
+  background-color:#33cc33;
+  border:1px solid #33cc33; /*same colour as the background*/
+  color:#fff;
+  overflow: hidden;
+  /*set the border-radius at half the size of the width and height*/
+  border-radius: 50%;
+  /*give the button a small drop shadow*/
+  }
 
 /***NOW STYLE THE BUTTON'S HOVER STATE***/
 .custombtn-base:hover{
@@ -103,4 +95,20 @@ transform: translateY(-50%);
 position: absolute !important;
 margin:0 auto;
 width:100%;
+}
+
+.theview {
+  background-color: #f8f8f8;
+}
+
+.button-block{
+  border-radius: 8px !important;
+}
+
+.bar-custom{
+  background-color: #585858;
+  color: white;
+  line-height: 34px;
+  font-weight: bold;
+  text-align: center;
 }
