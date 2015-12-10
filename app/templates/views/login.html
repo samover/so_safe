@@ -15,23 +15,20 @@
 
       <div class="list list-inset" ng-repeat="friend in loginCtrl.friends track
         by $index">
-        <label class="item item-input">
-          <input type="text" placeholder="Add friend"
-          ng-model="friend.name" />
+        <label class="item-input-wrapper">
+          <input type="text" placeholder="Add friend" ng-model="friend.name" />
         </label>
 
-          <button class="button button-small button-balanced" ng-if="$index ==
-            loginCtrl.friends.length - 1"
-            ng-click="loginCtrl.addInput(friend)"> <i class="icon ion-plus"></i> </button>
+        <button class="button button-small button-balanced" ng-if="$index == loginCtrl.friends.length - 1" ng-click="loginCtrl.addInput(friend)">
+          <i class="icon ion-plus"></i>
+        </button>
 
-          <button class="button button-small button-assertive" ng-if="$index !=
-          loginCtrl.friends.length - 1" ng-click="removeInput($index)" >
-          <i class="icon ion-minus"></i> </button>
+        <button class="button button-small button-assertive" ng-if="$index != loginCtrl.friends.length - 1" ng-click="removeInput($index)">
+          <i class="icon ion-minus"></i>
+        </button>
       </div>
 
         <button class="button button-block button-calm"
           ng-click="loginCtrl.login(user)">Login</button>
-
-
     </ion-content>
 </ion-view>
