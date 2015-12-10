@@ -9,24 +9,26 @@
       <div class="list list-inset">
         <label class="item item-input">
           <input type="text" placeholder="user name"
-          name="name" ng-model="name">
+          name="name" ng-model="user.name">
         </label>
 
-            <div class="list list-inset" ng-repeat="friend in loginCtrl.friends">
+            <!--<div class="list list-inset" ng-repeat="friend in loginCtrl.friends">-->
             <label class="item item-input">
-                <input type="text" placeholder="Add friend" ng-model="friend.name" />
-            <button class="button button-small button-balanced" ng-click="loginCtrl.login()">
-                <i class="icon ion-plus"></i>
-            </button>
-                <button class="button button-small button-assertive" ng-if="$index != loginCtrl.friends.length - 1" ng-click="removeInput($index)">
-                <i class="icon ion-minus"></i>
-            </button>
+              <input type="text" placeholder="Add friend" ng-model="user.friend1" />
+              <input type="text" placeholder="Add friend" ng-model="user.friend2" />
+
+          <!--<button class="button button-small button-balanced" ng-click="loginCtrl.login()">-->
+              <!--<i class="icon ion-plus"></i>-->
+          <!--</button>-->
+              <!--<button class="button button-small button-assertive" ng-if="$index != loginCtrl.friends.length - 1" ng-click="removeInput($index)">-->
+              <!--<i class="icon ion-minus"></i>-->
+          <!--</button>-->
             </label>
       </div>
 
-      {{loginCtrl.friends}}
+        <button class="button button-block button-calm"
+          ng-click="loginCtrl.login(user)">Login</button>
 
-        <button class="button button-block button-calm" ng-click="loginCtrl.login()">Login</button>
       </form>
     </ion-content>
 </ion-view>

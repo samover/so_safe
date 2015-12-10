@@ -10,9 +10,23 @@ angular.module('SoSafe')
   .controller('LoginController', ['$scope', '$rootScope', '$state', 'User', function($scope, $rootScope, $state, User) {
     var self = this;
 
-    self.login = function() {
+    self.login = function(user) {
       console.log('hello');
-      $rootScope.user = new User($scope.name);
+      var friends = [
+        {
+          'name': user.friend1,
+          'status': false
+        },
+        {
+          'name': user.friend2,
+          'status': false
+        }
+      ];
+      //$rootScope.user = new User(user.name);
+      window.localStorage['username'] = user.name;
+      window.localStorage['friends'] = JSON.stringify(friends);
+      //$rootScope.friend = user.friend;
+      //console.log(user);
       $state.go('app.button');
     };
 
