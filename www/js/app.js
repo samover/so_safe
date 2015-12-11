@@ -17,7 +17,7 @@ angular.module('SoSafe', ['ionic', 'ngResource'])
 
   $stateProvider
     .state('app', {
-      url: '/app',
+      url: '/',
       abstract: true,
       templateUrl: 'templates/main.html',
       controller: 'MainController'
@@ -27,7 +27,7 @@ angular.module('SoSafe', ['ionic', 'ngResource'])
       cache: true,
       views: {
         'viewContent': {
-          templateUrl: 'templates/views/home.html',
+          templateUrl: 'templates/home.html',
           controller: 'HomeController'
         }
       }
@@ -37,7 +37,7 @@ angular.module('SoSafe', ['ionic', 'ngResource'])
       cache: true,
       views: {
         'viewContent': {
-          templateUrl: 'templates/views/login.html',
+          templateUrl: 'templates/login.html',
           controller: 'LoginController'
         }
       }
