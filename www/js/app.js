@@ -16,32 +16,33 @@ angular.module('SoSafe', ['ionic', 'ngResource'])
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('app', {
-      url: '/',
-      abstract: true,
-      templateUrl: 'templates/main.html',
-      controller: 'MainController'
-    })
-    .state('app.home', {
+    //.state('app', {
+      //url: '/',
+      //abstract: true,
+      //templateUrl: 'templates/main.html',
+      //controller: 'MainController'
+    //})
+    .state('home', {
       url: '/home',
       cache: true,
       views: {
-        'viewContent': {
+        'home': {
           templateUrl: 'templates/home.html',
           controller: 'HomeController'
         }
       }
     })
-    .state('app.login', {
+    .state('login', {
       url: '/login',
       cache: true,
       views: {
-        'viewContent': {
+        'login': {
           templateUrl: 'templates/login.html',
           controller: 'LoginController'
         }
       }
     });
-  $urlRouterProvider.otherwise('/app/login');
+
+  $urlRouterProvider.otherwise('/login');
 
 });
