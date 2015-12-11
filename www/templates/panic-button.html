@@ -1,9 +1,12 @@
-<div class="row text-center">
+<div class="row text-center" ng-controller='HomeController as ctrl'>
   <div class="col">
-    <button id="the_button" class="button" ng-model="status.message" ng-click="changeStatus()"
-    ng-class="{'custombtn-base':status.message === 'Are you ok?',
-    'custombtn-waiting':status.message === 'Waiting for response',
-    'custombtn-response':status.message === 'I am ok!',
-    'custombtn-allok':status.message === 'Everyone is ok!'}">{{status.message}}</button>
+    <button id="the_button" class="button" ng-model="ctrl.button"
+                                           ng-click="ctrl.changeStatus()"
+    ng-class="{ 'custombtn-base':ctrl.button === 'Are you ok?',
+                'custombtn-waiting':ctrl.button === 'Waiting for response',
+                'custombtn-response':ctrl.button === 'I am ok!',
+                'custombtn-allok':ctrl.button === 'Everyone is ok!'}">
+      {{ctrl.button}}
+    </button>
   </div>
 </div>

@@ -1,4 +1,4 @@
-angular.module('SoSafe', ['ionic', 'ngResource'])
+angular.module('SoSafe', ['ionic', 'ngResource', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
