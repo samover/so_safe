@@ -5,11 +5,12 @@ angular.module('SoSafe')
     var self = this;
 
     self.login = function(user) {
-      var friends = self.friends;
-
-      window.localStorage['username'] = user.name;
-      window.localStorage['friends'] = JSON.stringify(friends);
-      $state.go('app.button');
+      //var friends = self.friends;
+      User.build(user.name, self.friends);
+      //window.localStorage['username'] = user.name;
+      //window.localStorage['friends'] = JSON.stringify(friends);
+      console.log(User);
+      $state.go('home');
     };
 
     self.friends = [
