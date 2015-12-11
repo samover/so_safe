@@ -36,7 +36,7 @@ var emulate = args.emulate;
 var run = args.run;
 var port = args.port;
 var stripDebug = !!args.stripDebug;
-var targetDir = path.resolve(build ? 'www' : '.tmp');
+var targetDir = 'www/'; //path.resolve(build ? 'www' : '.tmp');
 
 // if we just use emualate or run without specifying platform, we assume iOS
 // in this case the value returned from yargs would just be true
@@ -77,7 +77,7 @@ gulp.task('styles', function() {
 
   var options = build ? { style: 'compressed' } : { style: 'expanded' };
 
-  var sassStream = gulp.src('app/styles/main.scss')
+  var sassStream = gulp.src('www/css/main.scss')
     .pipe(plugins.sass(options))
     .on('error', function(err) {
       console.log('err: ', err);
@@ -85,7 +85,7 @@ gulp.task('styles', function() {
     });
 
   // build ionic css dynamically to support custom themes
-  var ionicStream = gulp.src('app/styles/ionic-styles.scss')
+  var ionicStream = gulp.src('www/css/ionic-styles.scss')
     .pipe(plugins.cached('ionic-styles'))
     .pipe(plugins.sass(options))
     // cache and remember ionic .scss in order to cut down re-compile time
@@ -120,7 +120,7 @@ gulp.task('scripts', function() {
   // prepare angular template cache from html templates
   // (remember to change appName var to desired module name)
   var templateStream = gulp
-    .src('**/*.html', { cwd: 'app/templates'})
+    .src('**/*.html', { cwd: 'www/templates'})
     .pipe(plugins.angularTemplatecache('templates.js', {
       root: 'templates/',
       module: appName,
@@ -128,7 +128,7 @@ gulp.task('scripts', function() {
     }));
 
   var scriptStream = gulp
-    .src(['templates.js', 'app.js', '**/*.js'], { cwd: 'app/scripts' })
+    .src(['templates.js', 'app.js', '**/*.js'], { cwd: 'www/js' })
 
     .pipe(plugins.if(!build, plugins.changed(dest)));
 
@@ -157,7 +157,7 @@ gulp.task('fonts', function() {
 
 // copy templates
 gulp.task('templates', function() {
-  return gulp.src('app/templates/**/*.*')
+  return gulp.src('www/templates/**/*.*')
     .pipe(gulp.dest(path.join(targetDir, 'templates')))
 
     .on('error', errorHandler);
@@ -165,7 +165,7 @@ gulp.task('templates', function() {
 
 // generate iconfont
 gulp.task('iconfont', function(){
-  return gulp.src('app/icons/*.svg', {
+  return gulp.src('www/icons/*.svg', {
         buffer: false
     })
     .pipe(plugins.iconfontCss({
@@ -183,7 +183,7 @@ gulp.task('iconfont', function(){
 
 // copy images
 gulp.task('images', function() {
-  return gulp.src('app/images/**/*.*')
+  return gulp.src('www/images/**/*.*')
     .pipe(gulp.dest(path.join(targetDir, 'images')))
 
     .on('error', errorHandler);
@@ -193,7 +193,7 @@ gulp.task('images', function() {
 // lint js sources based on .jshintrc ruleset
 gulp.task('jsHint', function(done) {
   return gulp
-    .src('app/scripts/**/*.js')
+    .src('www/js/**/*.js')
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(stylish))
 
@@ -235,18 +235,18 @@ gulp.task('index', ['jsHint', 'scripts'], function() {
   // in development mode, it's better to add each file seperately.
   // it makes debugging easier.
   var _getAllScriptSources = function() {
-    var scriptStream = gulp.src(['scripts/app.js', 'scripts/**/*.js'], { cwd: targetDir });
+    var scriptStream = gulp.src(['www/js/app.js', 'www/js/**/*.js'], { cwd: targetDir });
     return streamqueue({ objectMode: true }, scriptStream);
   };
 
-  return gulp.src('app/index.html')
+  return gulp.src('www/index.html')
     // inject css
     .pipe(_inject(gulp.src(cssNaming, { cwd: targetDir }), 'app-styles'))
     // inject vendor.js
     .pipe(_inject(gulp.src('vendor*.js', { cwd: targetDir }), 'vendor'))
     // inject app.js (build) or all js files indivually (dev)
     .pipe(plugins.if(build,
-      _inject(gulp.src('scripts/app*.js', { cwd: targetDir }), 'app'),
+      _inject(gulp.src('js/app*.js', { cwd: targetDir }), 'app'),
       _inject(_getAllScriptSources(), 'app')
     ))
 
@@ -312,10 +312,10 @@ gulp.task('watchers', function() {
   gulp.watch('app/fonts/**', ['fonts']);
   gulp.watch('app/icons/**', ['iconfont']);
   gulp.watch('app/images/**', ['images']);
-  gulp.watch('app/scripts/**/*.js', ['index']);
+  gulp.watch('www/js/**/*.js', ['index']);
   gulp.watch('./vendor.json', ['vendor']);
   gulp.watch('app/templates/**/*.html', ['index']);
-  gulp.watch('app/index.html', ['index']);
+  gulp.watch('www/index.html', ['index']);
   gulp.watch(targetDir + '/**')
     .on('change', plugins.livereload.changed)
     .on('error', errorHandler);
