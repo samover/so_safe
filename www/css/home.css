@@ -10,10 +10,12 @@
   background-color: green;
   border-radius: 50%;
 }
+
 .statusnotice_waiting{
   background-color: red;
   border-radius: 50%;
 }
+
 .pull-right{
   float:right;
 }
