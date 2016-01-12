@@ -63,6 +63,3 @@ So that I can send another request
 I want the request I sent to time out
 
 ```
-
-
-[![Throughput Graph](https://graphs.waffle.io/samover/so_safe/throughput.svg)](https://waffle.io/samover/so_safe/metrics)
